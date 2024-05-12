@@ -5,10 +5,10 @@ public class Calculator {
     public int calculate(String input) throws RuntimeException {
 
         int result = 0;
-        if(input == "" || input == null) exceptionTriger("잘못된 문자열입니다.");
+        if(input == "" || input == null) exceptionTriger(Message.INVALID_STRING.getMessage());
 
         String regexStr = ",,:";
-        //커스텀 문자열 세팅
+        //Custom string settings
         if(input.indexOf("\n") != -1) {
             String[] inputSplit = input.split("\n");
             regexStr = inputSplit[0].replace("//", "");
@@ -17,12 +17,12 @@ public class Calculator {
         int maxResultValue = Integer.MAX_VALUE;
         for(String s : input.split("[\\" + regexStr + "]")) {
             int strToInt = parseInt(s);
-            //오버플로우 체크
+            //Overflow check
             if(strToInt <= maxResultValue) {
                 maxResultValue -= strToInt;
                 result += Integer.parseInt(s);
             }else {
-                exceptionTriger("int 자료형의 크기를 벗어났습니다.");
+                exceptionTriger(Message.OVERFLOW_INT.getMessage());
             }
         }
 
@@ -34,7 +34,7 @@ public class Calculator {
         try {
             i = Integer.parseInt(str);
         }catch (NumberFormatException e) {
-            exceptionTriger("잘못된 문자열입니다.");
+            exceptionTriger(Message.INVALID_STRING.getMessage());
         }
         return i;
     }

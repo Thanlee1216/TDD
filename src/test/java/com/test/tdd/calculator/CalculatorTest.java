@@ -40,4 +40,15 @@ public class CalculatorTest {
         assertEquals(8, result);
     }
 
+    @Test
+    void 숫자가_하나만_입력된_경우() {
+        String input = "1";
+        int result = Calculator.calculate(input);
+        assertEquals(1, result);
+
+        input = "//;\n2";
+        result = Calculator.calculate(input);
+        assertEquals(2, result);
+    }
+
 }

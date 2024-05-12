@@ -9,46 +9,56 @@ public class CalculatorTest {
     @Test
     void 구분자로_문자_나눠_더하기() {
         String input = "1:2:3";
-        int result = Calculator.calculate(input);
-        assertEquals(6, result);
+        assertEquals(6, getCalculateResult(input));
 
         input = "1,2:3";
-        result = Calculator.calculate(input);
-        assertEquals(6, result);
+        assertEquals(6, getCalculateResult(input));
 
         input = "2:2:3";
-        result = Calculator.calculate(input);
-        assertEquals(7, result);
+        assertEquals(7, getCalculateResult(input));
 
         input = "4,2:3";
-        result = Calculator.calculate(input);
-        assertEquals(9, result);
+        assertEquals(9, getCalculateResult(input));
     }
 
     @Test
     void 커스텀_구분자로_문자_나눠_더하기() {
         String input = "//;\n1;2;3";
-        int result = Calculator.calculate(input);
-        assertEquals(6, result);
+        assertEquals(6, getCalculateResult(input));
 
         input = "//,\n1,2,3";
-        result = Calculator.calculate(input);
-        assertEquals(6, result);
+        assertEquals(6, getCalculateResult(input));
 
         input = "//[\n3[2[3";
-        result = Calculator.calculate(input);
-        assertEquals(8, result);
+        assertEquals(8, getCalculateResult(input));
     }
 
     @Test
     void 숫자가_하나만_입력된_경우() {
         String input = "1";
-        int result = Calculator.calculate(input);
-        assertEquals(1, result);
+        assertEquals(1, getCalculateResult(input));
 
         input = "//;\n2";
-        result = Calculator.calculate(input);
-        assertEquals(2, result);
+        assertEquals(2, getCalculateResult(input));
+    }
+
+    @Test
+    void 결과가_int_크기를_벗어난_경우() {
+        String input = "1:2147483647";
+        assertEquals(-1, getCalculateResult(input));
+
+        input = "//;\n2000000000;2000000000";
+        assertEquals(-1, getCalculateResult(input));
+    }
+
+    private int getCalculateResult(String input) {
+        int result = -1;
+        try {
+            result = Calculator.calculate(input);
+        } catch (RuntimeException e) {
+            System.out.println(e.getMessage());
+        }
+        return result;
     }
 
 }

@@ -57,6 +57,15 @@ public class CalculatorTest {
         assertEquals(-1, getCalculateResult(input));
     }
 
+    @Test
+    void 공백_혹은_NULL이_입력된_경우() {
+        String input = "";
+        assertEquals(-1, getCalculateResult(input));
+
+        input = null;
+        assertEquals(-1, getCalculateResult(input));
+    }
+
     private int getCalculateResult(String input) {
         int result = -1;
         try {

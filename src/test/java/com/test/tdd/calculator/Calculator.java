@@ -3,6 +3,11 @@ package com.test.tdd.calculator;
 public class Calculator {
 
     public static int calculate(String input) throws RuntimeException{
+
+        if(input == "" || input == null) {
+            throw new RuntimeException("잘못된 문자열입니다.");
+        }
+
         String regexStr = ",,:";
         if(input.indexOf("\n") != -1) {
             String[] inputSplit = input.split("\n");

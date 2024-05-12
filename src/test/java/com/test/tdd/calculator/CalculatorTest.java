@@ -51,6 +51,12 @@ public class CalculatorTest {
         assertEquals(-1, getCalculateResult(input));
     }
 
+    @Test
+    void 커스텀_구분자와_실제_구분자가_다른_경우() {
+        String input = "//:\n1;2;3";
+        assertEquals(-1, getCalculateResult(input));
+    }
+
     private int getCalculateResult(String input) {
         int result = -1;
         try {

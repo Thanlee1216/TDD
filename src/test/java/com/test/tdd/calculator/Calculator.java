@@ -12,7 +12,12 @@ public class Calculator {
         int result = 0;
         int maxResultValue = Integer.MAX_VALUE;
         for(String s : input.split("[\\" + regexStr + "]")) {
-            int strToInt = Integer.parseInt(s);
+            int strToInt = 0;
+            try {
+                strToInt = Integer.parseInt(s);
+            }catch (NumberFormatException e) {
+                throw new RuntimeException("잘못된 문자열입니다.");
+            }
             if(strToInt <= maxResultValue) {
                 maxResultValue -= strToInt;
                 result += Integer.parseInt(s);

@@ -25,4 +25,19 @@ public class CalculatorTest {
         assertEquals(9, result);
     }
 
+    @Test
+    void 커스텀_구분자로_문자_나눠_더하기() {
+        String input = "//;\n1;2;3";
+        int result = Calculator.calculate(input);
+        assertEquals(6, result);
+
+        input = "//,\n1,2,3";
+        result = Calculator.calculate(input);
+        assertEquals(6, result);
+
+        input = "//[\n3[2[3";
+        result = Calculator.calculate(input);
+        assertEquals(8, result);
+    }
+
 }

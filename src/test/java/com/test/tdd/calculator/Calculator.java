@@ -9,7 +9,7 @@ public class Calculator {
 
         String regexStr = ",,:";
         //Custom string settings
-        if(input.indexOf("\n") != -1) {
+        if(input.contains("\n") && input.contains("//")) {
             String[] inputSplit = input.split("\n");
             regexStr = inputSplit[0].replace("//", "");
             input = inputSplit[1];

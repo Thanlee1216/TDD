@@ -1,4 +1,4 @@
-package com.test.tdd.calculator;
+package com.example.calculator;
 
 import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;

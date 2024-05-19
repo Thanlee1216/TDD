@@ -1,4 +1,4 @@
-package com.test.tdd.calculator;
+package com.example.calculator;
 
 public class Calculator {
 

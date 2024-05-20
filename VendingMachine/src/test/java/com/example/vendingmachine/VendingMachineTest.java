@@ -1,19 +1,25 @@
 package com.example.vendingmachine;
 
+import com.example.vendingmachine.domain.VendingMachine;
 import com.example.vendingmachine.domain.VendingMachine_Beverage;
 import com.example.vendingmachine.repository.ContainerRepository;
+import org.junit.jupiter.api.BeforeEach;
 import org.junit.jupiter.api.Test;
 
 import static org.junit.jupiter.api.Assertions.assertEquals;
 
 public class VendingMachineTest {
 
-    //쿼리를 실행할 수 없으니 결과에 대한 대역을 조회하도록 세팅
-    ContainerRepository repository = new ContainerRepository();
+    VendingMachine vendingMachine;
+
+    @BeforeEach
+    void setUp() {
+        //쿼리를 실행할 수 없으니 결과에 대한 대역을 조회하도록 세팅
+        vendingMachine = new VendingMachine_Beverage(new ContainerRepository().getContainers("Beverage"));
+    }
 
     @Test
     void 천원_넣고_음료_구매() {
-        VendingMachine_Beverage vendingMachine = new VendingMachine_Beverage(repository.getContainers("Beverage"));
         vendingMachine.inputMoney(1000);
         String itemName = vendingMachine.giveItem(1);
         int outputMoney = vendingMachine.outputMoney();
@@ -41,7 +47,6 @@ public class VendingMachineTest {
 
     @Test
     void 재고_부족() {
-        VendingMachine_Beverage vendingMachine = new VendingMachine_Beverage(repository.getContainers("Beverage"));
         vendingMachine.inputMoney(1000);
         String itemName = vendingMachine.giveItem(1);
         int outputMoney = vendingMachine.outputMoney();
@@ -57,7 +62,6 @@ public class VendingMachineTest {
 
     @Test
     void 잔돈_부족() {
-        VendingMachine_Beverage vendingMachine = new VendingMachine_Beverage(repository.getContainers("Beverage"));
         vendingMachine.inputMoney(1000);
         String itemName = vendingMachine.giveItem(1);
         int outputMoney = vendingMachine.outputMoney();

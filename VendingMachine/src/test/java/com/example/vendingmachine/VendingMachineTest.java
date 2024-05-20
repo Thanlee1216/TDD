@@ -55,5 +55,21 @@ public class VendingMachineTest {
         assertEquals(1000, outputMoney);
     }
 
+    @Test
+    void 잔돈_부족() {
+        VendingMachine_Beverage vendingMachine = new VendingMachine_Beverage(repository.getContainers("Beverage"));
+        vendingMachine.inputMoney(1000);
+        String itemName = vendingMachine.giveItem(1);
+        int outputMoney = vendingMachine.outputMoney();
+        assertEquals("콜라", itemName);
+        assertEquals(500, outputMoney);
+
+        vendingMachine.inputMoney(1000);
+        itemName = vendingMachine.giveItem(1);
+        outputMoney = vendingMachine.outputMoney();
+        assertEquals("잔돈부족", itemName);
+        assertEquals(1000, outputMoney);
+    }
+
 
 }

@@ -5,20 +5,21 @@ import java.util.List;
 public class VendingMachine_Beverage implements VendingMachine{
 
     private List<Container> containers;
-    private int money;
+    private int inputMoney;
+    private int defaultMoney;
 
     public VendingMachine_Beverage(List<Container> containers) {
         this.containers = containers;
     }
 
     @Override
-    public void inputMoney(int money) {
-        this.money = money;
+    public void inputMoney(int inputMoney) {
+        this.inputMoney = inputMoney;
     }
 
     @Override
     public int outputMoney() {
-        return this.money;
+        return this.inputMoney;
     }
 
     @Override
@@ -31,7 +32,7 @@ public class VendingMachine_Beverage implements VendingMachine{
             return "매진";
         }
         container.setItemCount(container.getItemCount() - 1);
-        money -= container.getItemPrice();
+        inputMoney -= container.getItemPrice();
         return container.getItemName();
     }
 }
